@@ -51,6 +51,7 @@ dependencies {
     implementation(project(":features:auth:api"))
     implementation(project(":features:auth:impl"))
     implementation(project(":features:home:api"))
+    implementation(project(":features:home:impl"))
     implementation(project(":features:company:impl"))
 
     implementation(platform(libs.androidx.compose.bom))

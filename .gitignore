@@ -23,3 +23,6 @@ build/
 *.aab
 *.keystore
 !debug.keystore
+
+# Devin local config (may contain secrets)
+.devin/

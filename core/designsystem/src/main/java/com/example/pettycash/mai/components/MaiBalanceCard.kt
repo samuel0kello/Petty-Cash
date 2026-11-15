@@ -1,14 +1,15 @@
 package com.example.pettycash.mai.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Icon
@@ -16,11 +17,9 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.pettycash.mai.theme.MaiTheme
@@ -34,14 +33,14 @@ fun MaiBalanceCard(
     issuedKes: Long,
     spentKes: Long,
     state: MaiFloatState,
-    onTopUp: () -> Unit,
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
+    onTopUp: (() -> Unit)? = null,
 ) {
     val ext = MaiTheme.extendedColors
     val scheme = MaterialTheme.colorScheme
     val (flagBg, flagFg, barColor) = when (state) {
-        MaiFloatState.Healthy -> Triple(ext.successContainer, ext.onSuccessContainer, MaterialTheme.colorScheme.primary)
+        MaiFloatState.Healthy -> Triple(ext.successContainer, ext.onSuccessContainer, scheme.primary)
         MaiFloatState.Low -> Triple(ext.warningContainer, ext.onWarningContainer, ext.warning)
         MaiFloatState.Empty -> Triple(scheme.errorContainer, scheme.onErrorContainer, scheme.error)
     }
@@ -52,14 +51,17 @@ fun MaiBalanceCard(
         enabled = onClick != null,
         modifier = modifier.fillMaxWidth(),
         shape = MaiTheme.shapes.lg,
-        color = MaterialTheme.colorScheme.surfaceContainerHighest,
+        color = scheme.surfaceContainerHighest,
     ) {
-        Column(modifier = Modifier.padding(MaiTheme.spacing.xl)) {
+        Column(
+            modifier = Modifier.padding(MaiTheme.spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.md),
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     floatName,
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = scheme.onSurfaceVariant,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f),
@@ -80,36 +82,46 @@ fun MaiBalanceCard(
                     }
                 }
             }
-            Spacer(Modifier.height(MaiTheme.spacing.xs))
             Text(
                 formatKes(balanceKes),
                 style = MaiTheme.customTypography.amountLarge,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = scheme.onSurface,
             )
-            Spacer(Modifier.height(MaiTheme.spacing.md))
             LinearProgressIndicator(
                 progress = { spentFraction },
                 modifier = Modifier.fillMaxWidth().height(6.dp),
                 color = barColor,
-                trackColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+                trackColor = scheme.surfaceContainer,
             )
-            Spacer(Modifier.height(MaiTheme.spacing.md))
-            Row {
-                Text(
-                    "Issued ${formatKes(issuedKes)}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Spacer(Modifier.width(MaiTheme.spacing.lg))
-                Text(
-                    "Spent ${formatKes(spentKes)}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-            Spacer(Modifier.height(MaiTheme.spacing.md))
-            TextButton(onClick = onTopUp, modifier = Modifier.height(48.dp)) {
-                Text("Top up", style = MaterialTheme.typography.labelLarge)
+            Text(
+                "Issued ${formatKes(issuedKes)} · Spent ${formatKes(spentKes)}",
+                style = MaterialTheme.typography.bodyMedium,
+                color = scheme.onSurfaceVariant,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth().height(48.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                if (onTopUp != null) {
+                    Surface(
+                        onClick = onTopUp,
+                        shape = CircleShape,
+                        color = scheme.secondaryContainer,
+                        contentColor = scheme.onSecondaryContainer,
+                        modifier = Modifier.height(48.dp),
+                    ) {
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            Text(
+                                "Top up",
+                                style = MaterialTheme.typography.labelLarge,
+                                modifier = Modifier.padding(horizontal = MaiTheme.spacing.xxl),
+                            )
+                        }
+                    }
+                }
             }
         }
     }

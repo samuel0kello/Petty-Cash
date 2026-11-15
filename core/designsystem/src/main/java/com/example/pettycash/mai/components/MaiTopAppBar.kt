@@ -1,5 +1,6 @@
 package com.example.pettycash.mai.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,6 +32,7 @@ fun MaiTopAppBar(
     subtitle: String? = null,
     navigationIcon: ImageVector? = Icons.AutoMirrored.Filled.ArrowBack,
     onNavigationClick: () -> Unit = {},
+    onTitleClick: (() -> Unit)? = null,
     onSearchClick: () -> Unit = {},
     onMoreClick: () -> Unit = {},
 ) {
@@ -56,7 +58,11 @@ fun MaiTopAppBar(
                     }
                 }
             }
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .then(if (onTitleClick != null) Modifier.clickable(onClick = onTitleClick) else Modifier),
+            ) {
                 Text(
                     title,
                     style = MaterialTheme.typography.titleLarge,

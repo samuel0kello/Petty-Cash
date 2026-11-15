@@ -9,10 +9,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.style.LineHeightStyle
 import com.example.pettycash.mai.R
 
-// Type scale from the Figma "Type scale" foundations. Google Sans Flex for the UI,
-// Geist Mono for codes/references, Bricolage Grotesque for splash/intro headings.
-// Optical size: 24pt instances for text up to ~24sp, 36pt for larger display text.
-
 private val MaiFontFamily = FontFamily(
     Font(R.font.gsf_regular, FontWeight.Normal),
     Font(R.font.gsf_medium, FontWeight.Medium),
@@ -48,7 +44,11 @@ private fun maiStyle(
     fontSize = size.sp,
     lineHeight = lineHeight.sp,
     letterSpacing = tracking.sp,
-    lineHeightStyle = LineHeightStyle(LineHeightStyle.Alignment.Center, LineHeightStyle.Trim.Both),
+    lineHeightStyle = LineHeightStyle(
+        LineHeightStyle.Alignment.Center,
+        LineHeightStyle.Trim.Both,
+        LineHeightStyle.Mode.Tight,
+    ),
 )
 
 val MaiTypography = Typography(
@@ -69,7 +69,6 @@ val MaiTypography = Typography(
     labelSmall = maiStyle(11, 16, FontWeight.Medium, 0.5f),
 )
 
-/** PettyCash-specific styles that don't fit Material's fixed `Typography` slots. */
 data class MaiCustomTextStyles(
     val amountLarge: TextStyle,
     val amountMedium: TextStyle,
@@ -80,7 +79,7 @@ data class MaiCustomTextStyles(
 )
 
 val MaiCustomTypography = MaiCustomTextStyles(
-    amountLarge = maiStyle(32, 40, FontWeight.Medium, 0f, display = true),
+    amountLarge = maiStyle(32, 36, FontWeight.Medium, 0f, display = true),
     amountMedium = maiStyle(22, 28, FontWeight.Medium, 0f),
     amountSmall = maiStyle(16, 24, FontWeight.Medium, 0f),
     codeMedium = maiStyle(14, 20, FontWeight.Normal, 0f, family = GeistMonoFamily),
