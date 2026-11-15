@@ -11,12 +11,12 @@ import androidx.compose.ui.Modifier
 import com.example.pettycash.datasource.local.HomeLocalDataSource
 import com.example.pettycash.features.company.api.CompanyOnboardingNavKey
 import com.example.pettycash.features.home.api.HomeActivityNavKey
-import com.example.pettycash.features.home.api.HomeApprovalsNavKey
 import com.example.pettycash.features.home.api.HomeFloatNavKey
 import com.example.pettycash.features.home.api.HomeHistoryNavKey
 import com.example.pettycash.features.home.api.HomeMoreNavKey
 import com.example.pettycash.features.home.api.HomeNavKey
 import com.example.pettycash.features.home.api.HomeNewRequestNavKey
+import com.example.pettycash.features.requests.api.ApprovalsNavKey
 import com.example.pettycash.features.requests.api.RequestCashNavKey
 import com.example.pettycash.features.home.api.HomeProfileNavKey
 import com.example.pettycash.features.home.api.HomeReconciliationNavKey
@@ -50,7 +50,7 @@ val HomeImplModule = module {
                 when (event) {
                     is HomeEvent.NavigateToTab -> when (event.tab) {
                         HomeTab.Home -> navigator.goBack()
-                        HomeTab.Approvals -> navigator.goTo(HomeApprovalsNavKey)
+                        HomeTab.Approvals -> navigator.goTo(ApprovalsNavKey)
                         HomeTab.Float -> navigator.goTo(HomeFloatNavKey)
                         HomeTab.People -> navigator.goTo(TeamNavKey)
                         HomeTab.More -> navigator.goTo(HomeMoreNavKey)
@@ -61,7 +61,7 @@ val HomeImplModule = module {
                     HomeEvent.NavigateToRequestCash -> navigator.goTo(RequestCashNavKey)
                     HomeEvent.NavigateToClaimRefund -> navigator.goTo(HomeNewRequestNavKey)
                     HomeEvent.NavigateToRecordSpend -> navigator.goTo(HomeRecordSpendNavKey)
-                    HomeEvent.NavigateToApprovals -> navigator.goTo(HomeApprovalsNavKey)
+                    HomeEvent.NavigateToApprovals -> navigator.goTo(ApprovalsNavKey)
                     HomeEvent.NavigateToFloat -> navigator.goTo(HomeFloatNavKey)
                     HomeEvent.NavigateToPeople -> navigator.goTo(TeamNavKey)
                     HomeEvent.NavigateToMore -> navigator.goTo(HomeMoreNavKey)
@@ -76,7 +76,6 @@ val HomeImplModule = module {
         )
     }
 
-    navigation<HomeApprovalsNavKey> { HomeStubScreen("Approvals") }
     navigation<HomeFloatNavKey> { HomeStubScreen("Float") }
     navigation<HomeMoreNavKey> { HomeStubScreen("More") }
     navigation<HomeRequestsNavKey> { HomeStubScreen("Requests") }

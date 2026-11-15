@@ -13,6 +13,10 @@ import com.android.tools.screenshot.PreviewTest
 import com.example.pettycash.features.requests.impl.data.CashRequest
 import com.example.pettycash.features.requests.impl.data.RequestContext
 import com.example.pettycash.features.requests.impl.data.RequestStatus
+import com.example.pettycash.features.requests.impl.ui.approval.ApprovalDetailScreen
+import com.example.pettycash.features.requests.impl.ui.approval.ApprovalDetailState
+import com.example.pettycash.features.requests.impl.ui.approvals.ApprovalsScreen
+import com.example.pettycash.features.requests.impl.ui.approvals.ApprovalsState
 import com.example.pettycash.features.requests.impl.ui.detail.RequestDetailScreen
 import com.example.pettycash.features.requests.impl.ui.detail.RequestDetailState
 import com.example.pettycash.features.requests.impl.ui.request.RequestCashScreen
@@ -168,6 +172,47 @@ fun DetailPaidScreenshot() {
                     ),
                     loaded = true,
                 ),
+                onAction = {},
+            )
+        }
+    }
+}
+
+@PreviewTest
+@Preview(showBackground = true, widthDp = 360, heightDp = 800, name = "Approvals")
+@Composable
+fun ApprovalsScreenshot() {
+    MaiTheme {
+        PreviewDevice {
+            ApprovalsScreen(
+                state = ApprovalsState(
+                    requests = listOf(
+                        previewRequest,
+                        previewRequest.copy(
+                            id = "req-2",
+                            amountKes = 1_500,
+                            purpose = "Taxi to the bank",
+                            category = "Transport",
+                            voucherCode = "PCV-1044",
+                            requesterName = "Kevin Mwangi",
+                        ),
+                    ),
+                    loaded = true,
+                ),
+                onAction = {},
+            )
+        }
+    }
+}
+
+@PreviewTest
+@Preview(showBackground = true, widthDp = 360, heightDp = 800, name = "Approval Detail")
+@Composable
+fun ApprovalDetailScreenshot() {
+    MaiTheme {
+        PreviewDevice {
+            ApprovalDetailScreen(
+                state = ApprovalDetailState(request = previewRequest, loaded = true),
                 onAction = {},
             )
         }

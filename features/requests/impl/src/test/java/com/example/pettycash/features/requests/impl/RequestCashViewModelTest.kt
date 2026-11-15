@@ -174,6 +174,6 @@ class RequestCashViewModelTest {
             return request
         }
 
-        override suspend fun setStatus(id: String, status: String, paidReference: String) = Unit
+        override suspend fun setStatus(id: String, status: String, paidReference: String, reviewNote: String) = Unit
     }
 }
