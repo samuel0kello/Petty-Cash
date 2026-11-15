@@ -31,4 +31,5 @@
     <string name="records_event_paid">Paid</string>
     <string name="records_event_reviewed">Reviewed</string>
     <string name="records_close">Close</string>
+    <string name="records_your_requests">Your requests</string>
 </resources>

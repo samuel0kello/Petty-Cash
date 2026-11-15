@@ -485,3 +485,46 @@ private fun ActivityFilter.labelRes(): Int = when (this) {
     ActivityFilter.Spends -> R.string.records_filter_spends
     ActivityFilter.Refunds -> R.string.records_filter_refunds
 }
+
+@Composable
+internal fun MemberRequestsRoute(
+    onOpenDetail: (ActivityKind, String) -> Unit,
+    repository: RecordsRepository,
+) {
+    val items by repository.items.collectAsStateWithLifecycle(initialValue = emptyList())
+    MemberRequestsScreen(
+        items = items
+            .filter { it.kind == ActivityKind.Request || it.kind == ActivityKind.Refund }
+            .sortedByDescending { it.createdAt },
+        onOpenDetail = onOpenDetail,
+    )
+}
+
+@Composable
+private fun MemberRequestsScreen(
+    items: List<ActivityItem>,
+    onOpenDetail: (ActivityKind, String) -> Unit,
+) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        MaiTopAppBar(title = stringResource(R.string.records_your_requests), navigationIcon = null)
+        if (items.isEmpty()) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(
+                    stringResource(R.string.records_empty),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        } else {
+            LazyColumn(
+                modifier = Modifier.weight(1f),
+                contentPadding = PaddingValues(horizontal = MaiTheme.spacing.xxl),
+            ) {
+                items(items, key = { "${it.kind}-${it.kindId}" }) { item ->
+                    ActivityRow(item = item, onClick = { onOpenDetail(item.kind, item.kindId) })
+                    Spacer(Modifier.height(MaiTheme.spacing.sm))
+                }
+            }
+        }
+    }
+}
