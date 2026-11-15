@@ -27,6 +27,11 @@ PettyCash is an Android app for managing petty cash floats: request cash, approv
   </tr>
   <tr>
     <td><img src="docs/screenshots/settings-dark.png" width="180" alt="Settings dark" /><br/><sub>Settings (dark)</sub></td>
+    <td><img src="docs/screenshots/record-spend.png" width="180" alt="Record spend" /><br/><sub>Record a spend</sub></td>
+    <td><img src="docs/screenshots/claim-refund.png" width="180" alt="Claim refund" /><br/><sub>Claim a refund</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/reconciliation.png" width="180" alt="Reconciliation" /><br/><sub>Month-end reconciliation</sub></td>
     <td></td>
     <td></td>
   </tr>
@@ -91,7 +96,3 @@ features/<name>/
 ./gradlew updateDebugScreenshotTestDefaultTestSuite   # regenerate screenshot goldens
 ./gradlew testDebugScreenshotTestDefaultTestSuite     # verify screenshots
 ```
-
-## Accessibility
-
-Implemented per the design file's per-screen notes: 48dp minimum targets, tab position announcements ("Approvals, tab 2 of 5"), one-item spoken descriptions for cards and rows, custom Approve/Reject actions, heading semantics, live regions for banners/amounts, selected/toggleable states on chips, switches, radios and segmented controls, and dark-mode + edge-to-edge system bar handling.
