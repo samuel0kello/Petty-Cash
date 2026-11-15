@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":features:invite:impl"))
     implementation(project(":features:requests:impl"))
     implementation(project(":features:spends:impl"))
+    implementation(project(":features:refunds:impl"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

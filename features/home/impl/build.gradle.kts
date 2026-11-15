@@ -11,4 +11,6 @@ dependencies {
     implementation(project(":features:company:api"))
     implementation(project(":features:invite:api"))
     implementation(project(":features:requests:api"))
+    implementation(project(":features:spends:api"))
+    implementation(project(":features:refunds:api"))
 }
