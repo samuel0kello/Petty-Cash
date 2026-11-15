@@ -27,6 +27,10 @@ import com.example.pettycash.presentation.LocalNavigator
 import com.example.pettycash.presentation.Navigator
 import org.koin.compose.navigation3.koinEntryProvider
 import org.koin.core.annotation.KoinExperimentalAPI
+import android.app.Activity
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +41,20 @@ class MainActivity : ComponentActivity() {
             val settings = remember { AppSettingsLocalDataSource(context) }
             val themeMode by settings.themeMode.collectAsState(initial = "system")
             val systemDark = isSystemInDarkTheme()
-            MaiTheme(
-                darkTheme = when (themeMode) {
-                    "light" -> false
-                    "dark" -> true
-                    else -> systemDark
-                },
-            ) {
+            val darkTheme = when (themeMode) {
+                "light" -> false
+                "dark" -> true
+                else -> systemDark
+            }
+            val view = LocalView.current
+            SideEffect {
+                val window = (view.context as? Activity)?.window ?: return@SideEffect
+                WindowCompat.getInsetsController(window, view).apply {
+                    isAppearanceLightStatusBars = !darkTheme
+                    isAppearanceLightNavigationBars = !darkTheme
+                }
+            }
+            MaiTheme(darkTheme = darkTheme) {
                 App()
             }
         }
