@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_greeting">Habari, %1$s</string>
+    <string name="home_tab_home">Home</string>
+    <string name="home_tab_approvals">Approvals</string>
+    <string name="home_tab_float">Float</string>
+    <string name="home_tab_people">People</string>
+    <string name="home_tab_more">More</string>
+    <string name="home_tab_requests">Requests</string>
+    <string name="home_tab_history">History</string>
+    <string name="home_tab_profile">Profile</string>
+    <string name="home_role_admin">Admin</string>
+    <string name="home_role_custodian">Custodian</string>
+    <string name="home_role_member">Member</string>
+</resources>
