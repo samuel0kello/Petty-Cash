@@ -28,6 +28,7 @@ data class CashRequest(
     val voucherCode: String,
     val createdAt: Long,
     val paidReference: String = "",
+    val reviewNote: String = "",
 )
 
 object RequestStatus {
@@ -60,7 +61,7 @@ interface RequestsRepository {
         note: String,
     ): CashRequest
 
-    suspend fun setStatus(id: String, status: String, paidReference: String = "")
+    suspend fun setStatus(id: String, status: String, paidReference: String = "", reviewNote: String = "")
 }
 
 class LocalRequestsRepository(
@@ -126,13 +127,19 @@ class LocalRequestsRepository(
         return request
     }
 
-    override suspend fun setStatus(id: String, status: String, paidReference: String) {
+    override suspend fun setStatus(id: String, status: String, paidReference: String, reviewNote: String) {
         val requests = currentRequests()
         local.saveRequestsJson(
             json.encodeToString(
                 ListSerializer(CashRequest.serializer()),
                 requests.map {
-                    if (it.id == id) it.copy(status = status, paidReference = paidReference.ifBlank { it.paidReference }) else it
+                    if (it.id == id) {
+                        it.copy(
+                            status = status,
+                            paidReference = paidReference.ifBlank { it.paidReference },
+                            reviewNote = reviewNote.ifBlank { it.reviewNote },
+                        )
+                    } else it
                 },
             ),
         )
