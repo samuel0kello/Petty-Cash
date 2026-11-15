@@ -11,5 +11,6 @@ dependencies {
     implementation(project(":features:invite:api"))
     implementation(project(":features:auth:api"))
     implementation(project(":features:home:api"))
+    implementation(project(":features:settings:api"))
     implementation(libs.kotlinx.serialization.json)
 }

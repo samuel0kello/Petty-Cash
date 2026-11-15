@@ -80,9 +80,7 @@ val HomeImplModule = module {
         )
     }
 
-    navigation<HomeMoreNavKey> { HomeStubScreen("More") }
     navigation<HomeRequestsNavKey> { HomeStubScreen("Requests") }
-    navigation<HomeProfileNavKey> { HomeStubScreen("Profile") }
 }
 
 @Composable

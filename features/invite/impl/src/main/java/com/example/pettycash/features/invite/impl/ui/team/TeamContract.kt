@@ -14,10 +14,12 @@ sealed interface TeamAction {
     data object OnBack : TeamAction
     data object OnInvitePerson : TeamAction
     data class OnInviteClick(val inviteId: String) : TeamAction
+    data class OnMemberClick(val name: String) : TeamAction
 }
 
 sealed interface TeamEvent {
     data object NavigateBack : TeamEvent
     data object NavigateToInviteForm : TeamEvent
     data class NavigateToInvitePreview(val inviteId: String) : TeamEvent
+    data class NavigateToPerson(val name: String) : TeamEvent
 }

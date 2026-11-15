@@ -30,6 +30,7 @@ internal class TeamViewModel(
             TeamAction.OnBack -> sendEvent(TeamEvent.NavigateBack)
             TeamAction.OnInvitePerson -> sendEvent(TeamEvent.NavigateToInviteForm)
             is TeamAction.OnInviteClick -> sendEvent(TeamEvent.NavigateToInvitePreview(action.inviteId))
+            is TeamAction.OnMemberClick -> sendEvent(TeamEvent.NavigateToPerson(action.name))
         }
     }
 }

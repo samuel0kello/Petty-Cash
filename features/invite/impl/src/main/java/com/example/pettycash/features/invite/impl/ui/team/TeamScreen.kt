@@ -87,6 +87,7 @@ internal fun TeamScreen(
                                 title = member.name,
                                 subtitle = member.role + if (member.isSelf) " · You" else "",
                                 avatarInitials = initials,
+                                onClick = { onAction(TeamAction.OnMemberClick(member.name)) },
                             )
                         }
                         if (state.invites.isNotEmpty()) {

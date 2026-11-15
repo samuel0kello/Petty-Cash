@@ -59,6 +59,8 @@ val InviteImplModule = module {
                     TeamEvent.NavigateToInviteForm -> navigator.goTo(InvitePeopleNavKey)
                     is TeamEvent.NavigateToInvitePreview ->
                         navigator.goTo(InvitePreviewNavKey(event.inviteId))
+                    is TeamEvent.NavigateToPerson ->
+                        navigator.goTo(com.example.pettycash.features.settings.api.SettingsPersonNavKey(event.name))
                 }
             },
         )
