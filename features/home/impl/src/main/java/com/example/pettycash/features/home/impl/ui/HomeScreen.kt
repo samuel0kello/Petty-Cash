@@ -35,6 +35,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -268,7 +271,8 @@ private fun SectionHeading(text: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = MaiTheme.spacing.xxl)
-            .padding(top = MaiTheme.spacing.sm),
+            .padding(top = MaiTheme.spacing.sm)
+            .semantics { heading() },
     )
 }
 
@@ -284,16 +288,21 @@ private fun CountReminderCard(onStart: () -> Unit) {
             modifier = Modifier.padding(MaiTheme.spacing.lg),
             verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.sm),
         ) {
-            Text(
-                stringResource(R.string.home_count_reminder_title),
-                style = MaterialTheme.typography.titleMedium,
-                color = scheme.onSurface,
-            )
-            Text(
-                stringResource(R.string.home_count_reminder_body),
-                style = MaterialTheme.typography.bodyMedium,
-                color = scheme.onSurfaceVariant,
-            )
+            Column(
+                modifier = Modifier.semantics(mergeDescendants = true) {},
+                verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.xs),
+            ) {
+                Text(
+                    stringResource(R.string.home_count_reminder_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = scheme.onSurface,
+                )
+                Text(
+                    stringResource(R.string.home_count_reminder_body),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = scheme.onSurfaceVariant,
+                )
+            }
             com.example.pettycash.mai.components.MaiButton(
                 text = stringResource(R.string.home_count_reminder_action),
                 onClick = onStart,
@@ -311,7 +320,11 @@ private fun HomeInfoCardView(
     val scheme = MaterialTheme.colorScheme
     Surface(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics(mergeDescendants = true) {
+                contentDescription = "${card.title}. ${card.body}"
+            },
         shape = MaiTheme.shapes.md,
         color = if (filled) scheme.surfaceContainerHighest else scheme.surface,
         border = if (filled) null else BorderStroke(1.dp, scheme.outlineVariant),
