@@ -1,0 +1,34 @@
+<resources>
+    <string name="records_activity_title">Activity</string>
+    <string name="records_search_hint">Search requests</string>
+    <string name="records_filter_all">All</string>
+    <string name="records_filter_in">Money in</string>
+    <string name="records_filter_out">Money out</string>
+    <string name="records_filter_requests">Requests</string>
+    <string name="records_filter_spends">Spends</string>
+    <string name="records_filter_refunds">Refunds</string>
+    <string name="records_empty">No activity yet</string>
+    <string name="records_no_results">No results</string>
+    <string name="records_notifications_title">Notifications</string>
+    <string name="records_today">Today</string>
+    <string name="records_earlier">Earlier</string>
+    <string name="records_empty_notifications">You\'re all caught up</string>
+    <string name="records_detail_title">Expense detail</string>
+    <string name="records_row_project">Project</string>
+    <string name="records_row_site">Site</string>
+    <string name="records_row_paid_to">Paid to</string>
+    <string name="records_row_reference">M-Pesa reference</string>
+    <string name="records_row_voucher">Voucher</string>
+    <string name="records_receipt_attached">Receipt attached</string>
+    <string name="records_no_receipt">No receipt</string>
+    <string name="records_audit_trail">View audit trail</string>
+    <string name="records_view_voucher">View voucher</string>
+    <string name="records_audit_title">Audit trail</string>
+    <string name="records_voucher_title">Voucher</string>
+    <string name="records_event_created">Recorded</string>
+    <string name="records_event_submitted">Submitted</string>
+    <string name="records_event_approved">Approved</string>
+    <string name="records_event_paid">Paid</string>
+    <string name="records_event_reviewed">Reviewed</string>
+    <string name="records_close">Close</string>
+</resources>
