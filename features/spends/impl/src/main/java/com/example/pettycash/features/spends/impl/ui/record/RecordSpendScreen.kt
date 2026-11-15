@@ -260,7 +260,7 @@ private fun SpendItemRow(
             onValueChange = onAmount,
             modifier = Modifier.size(width = 112.dp, height = 56.dp),
         )
-        IconButton(onClick = onRemove, modifier = Modifier.size(24.dp)) {
+        IconButton(onClick = onRemove) {
             Icon(
                 Icons.Filled.Delete,
                 contentDescription = stringResource(R.string.spend_delete_item),
