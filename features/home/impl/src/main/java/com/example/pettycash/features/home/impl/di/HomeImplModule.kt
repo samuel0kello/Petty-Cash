@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.pettycash.datasource.local.ActivityLocalDataSource
 import com.example.pettycash.datasource.local.HomeLocalDataSource
 import com.example.pettycash.features.company.api.CompanyOnboardingNavKey
 import com.example.pettycash.features.home.api.HomeActivityNavKey
@@ -21,7 +22,7 @@ import com.example.pettycash.features.home.api.HomeNewRequestNavKey
 import com.example.pettycash.features.requests.api.ApprovalsNavKey
 import com.example.pettycash.features.requests.api.RequestCashNavKey
 import com.example.pettycash.features.home.api.HomeProfileNavKey
-import com.example.pettycash.features.home.api.HomeReconciliationNavKey
+import com.example.pettycash.features.reconciliation.api.ReconciliationNavKey
 import com.example.pettycash.features.home.api.HomeRecordSpendNavKey
 import com.example.pettycash.features.home.api.HomeRequestsNavKey
 import com.example.pettycash.features.home.impl.data.HomeRepository
@@ -41,7 +42,8 @@ import org.koin.dsl.navigation3.navigation
 @OptIn(KoinExperimentalAPI::class)
 val HomeImplModule = module {
     single { HomeLocalDataSource(androidContext()) }
-    single<HomeRepository> { LocalHomeRepository(get()) }
+    single { ActivityLocalDataSource(androidContext()) }
+    single<HomeRepository> { LocalHomeRepository(get(), get()) }
 
     viewModelOf(::HomeViewModel)
 
@@ -71,7 +73,7 @@ val HomeImplModule = module {
                     HomeEvent.NavigateToHistory -> navigator.goTo(HomeHistoryNavKey)
                     HomeEvent.NavigateToProfile -> navigator.goTo(HomeProfileNavKey)
                     HomeEvent.NavigateToActivity -> navigator.goTo(HomeActivityNavKey)
-                    HomeEvent.NavigateToReconciliation -> navigator.goTo(HomeReconciliationNavKey)
+                    HomeEvent.NavigateToReconciliation -> navigator.goTo(ReconciliationNavKey)
                     HomeEvent.NavigateToCompanyOnboarding -> navigator.goTo(CompanyOnboardingNavKey)
                 }
             },
@@ -83,7 +85,6 @@ val HomeImplModule = module {
     navigation<HomeHistoryNavKey> { HomeStubScreen("History") }
     navigation<HomeProfileNavKey> { HomeStubScreen("Profile") }
     navigation<HomeActivityNavKey> { HomeStubScreen("Activity") }
-    navigation<HomeReconciliationNavKey> { HomeStubScreen("Reconciliation") }
 }
 
 @Composable

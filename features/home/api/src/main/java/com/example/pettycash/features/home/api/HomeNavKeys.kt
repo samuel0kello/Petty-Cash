@@ -12,4 +12,3 @@ data object HomeProfileNavKey : NavKey
 data object HomeNewRequestNavKey : NavKey
 data object HomeRecordSpendNavKey : NavKey
 data object HomeActivityNavKey : NavKey
-data object HomeReconciliationNavKey : NavKey

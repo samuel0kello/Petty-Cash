@@ -17,7 +17,7 @@ import com.example.pettycash.features.floats.impl.ui.floats.FloatsViewModel
 import com.example.pettycash.features.floats.impl.ui.floats.TopUpEvent
 import com.example.pettycash.features.floats.impl.ui.floats.TopUpRoute
 import com.example.pettycash.features.floats.impl.ui.floats.TopUpViewModel
-import com.example.pettycash.features.home.api.HomeReconciliationNavKey
+import com.example.pettycash.features.reconciliation.api.ReconciliationNavKey
 import com.example.pettycash.presentation.LocalNavigator
 import kotlinx.serialization.json.Json
 import org.koin.android.ext.koin.androidContext
@@ -61,7 +61,7 @@ val FloatImplModule = module {
             onFloatDetailEvent = {
                 when (it) {
                     FloatDetailEvent.TopUp -> navigator.goTo(TopUpNavKey)
-                    FloatDetailEvent.StartReconciliation -> navigator.goTo(HomeReconciliationNavKey)
+                    FloatDetailEvent.StartReconciliation -> navigator.goTo(ReconciliationNavKey)
                 }
             },
         )

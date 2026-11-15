@@ -1,0 +1,31 @@
+<resources>
+    <string name="recon_title">Month-end count</string>
+    <string name="recon_count_label">How much cash is in the float?</string>
+    <string name="recon_count_hint">Count every note and coin before you type the total.</string>
+    <string name="recon_helper">Count notes and coins</string>
+    <string name="recon_helper_total">Total: KES %1$s</string>
+    <string name="recon_use_total">Use this total</string>
+    <string name="recon_next">See result</string>
+    <string name="recon_result_title">Count result</string>
+    <string name="recon_expected">Expected in float</string>
+    <string name="recon_counted">You counted</string>
+    <string name="recon_variance">Difference</string>
+    <string name="recon_balanced">Balanced</string>
+    <string name="recon_short">Short</string>
+    <string name="recon_over">Over</string>
+    <string name="recon_explain_title">Explain the gap</string>
+    <string name="recon_unreceipted">%1$d items have no receipt</string>
+    <string name="recon_explanation_hint">What happened to the missing cash?</string>
+    <string name="recon_submit">Submit count</string>
+    <string name="recon_submitted_title">Count submitted</string>
+    <string name="recon_submitted_body">Your admin will review the count and close the month.</string>
+    <string name="recon_done">Done</string>
+    <string name="recon_no_receipt">No receipt</string>
+    <string name="recon_review_title">Review month count</string>
+    <string name="recon_review_body">%1$s counted KES %2$s. The float was expected to hold KES %3$s.</string>
+    <string name="recon_close_month">Approve and close month</string>
+    <string name="recon_closed_title">Month closed</string>
+    <string name="recon_closed_body">%1$s is closed. Records are locked for this month.</string>
+    <string name="generic_back">Back</string>
+    <string name="generic_next">Next</string>
+</resources>

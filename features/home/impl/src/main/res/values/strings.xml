@@ -22,4 +22,7 @@
     <string name="home_sheet_request_cash_help">Ask for money before you spend it.</string>
     <string name="home_sheet_claim_refund">Claim a refund</string>
     <string name="home_sheet_claim_refund_help">Get back money you paid yourself.</string>
+    <string name="home_count_reminder_title">Count the float cash</string>
+    <string name="home_count_reminder_body">It\'s the start of the month. Count the cash in the float and send it for review.</string>
+    <string name="home_count_reminder_action">Start count</string>
 </resources>

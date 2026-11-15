@@ -51,7 +51,7 @@ internal class HomeViewModel(
             }
             HomeAction.OnBalanceClick, HomeAction.OnTopUpClick -> sendEvent(HomeEvent.NavigateToFloat)
             HomeAction.OnApprovalCardClick -> sendEvent(HomeEvent.NavigateToApprovals)
-            HomeAction.OnUnaccountedCardClick -> sendEvent(HomeEvent.NavigateToReconciliation)
+            HomeAction.OnUnaccountedCardClick, HomeAction.OnCountReminderClick -> sendEvent(HomeEvent.NavigateToReconciliation)
             HomeAction.OnReceiptsCardClick -> sendEvent(HomeEvent.NavigateToActivity)
             HomeAction.OnRowClick -> sendEvent(HomeEvent.NavigateToActivity)
             is HomeAction.OnSetupStepClick -> {

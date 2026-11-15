@@ -49,6 +49,7 @@ data class HomeDashboard(
     val setupSteps: List<HomeSetupStep> = emptyList(),
     val approvalCard: HomeInfoCard? = null,
     val unaccountedCard: HomeInfoCard? = null,
+    val showCountReminder: Boolean = false,
     val receiptsCard: HomeInfoCard? = null,
     val sectionTitle: String? = null,
     val rows: List<HomeRow> = emptyList(),

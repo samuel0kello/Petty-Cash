@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(project(":features:floats:api"))
     implementation(project(":features:home:api"))
+    implementation(project(":features:reconciliation:api"))
     implementation(project(":features:spends:api"))
     implementation(libs.kotlinx.serialization.json)
 }

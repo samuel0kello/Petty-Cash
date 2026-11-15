@@ -14,4 +14,5 @@ dependencies {
     implementation(project(":features:spends:api"))
     implementation(project(":features:refunds:api"))
     implementation(project(":features:floats:api"))
+    implementation(project(":features:reconciliation:api"))
 }

@@ -6,6 +6,7 @@ import com.example.pettycash.features.home.impl.di.HomeImplModule
 import com.example.pettycash.features.invite.impl.di.InviteImplModule
 import com.example.pettycash.features.onboarding.impl.di.OnboardingImplModule
 import com.example.pettycash.features.floats.impl.di.FloatImplModule
+import com.example.pettycash.features.reconciliation.impl.di.ReconciliationImplModule
 import com.example.pettycash.features.refunds.impl.di.RefundsImplModule
 import com.example.pettycash.features.requests.impl.di.RequestsImplModule
 import com.example.pettycash.features.spends.impl.di.SpendsImplModule
@@ -17,7 +18,7 @@ import org.koin.dsl.navigation3.navigation
 
 @OptIn(KoinExperimentalAPI::class)
 val AppModule = module {
-    includes(OnboardingImplModule, AuthImplModule, CompanyImplModule, HomeImplModule, InviteImplModule, RequestsImplModule, SpendsImplModule, RefundsImplModule, FloatImplModule)
+    includes(OnboardingImplModule, AuthImplModule, CompanyImplModule, HomeImplModule, InviteImplModule, RequestsImplModule, SpendsImplModule, RefundsImplModule, FloatImplModule, ReconciliationImplModule)
 
     navigation<PlaceholderNavKey> { PlaceholderScreen() }
 }

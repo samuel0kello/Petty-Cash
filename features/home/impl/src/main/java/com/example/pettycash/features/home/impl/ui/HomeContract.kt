@@ -24,6 +24,7 @@ sealed interface HomeAction {
     data object OnTopUpClick : HomeAction
     data object OnApprovalCardClick : HomeAction
     data object OnUnaccountedCardClick : HomeAction
+    data object OnCountReminderClick : HomeAction
     data object OnReceiptsCardClick : HomeAction
     data object OnRowClick : HomeAction
     data class OnSetupStepClick(val index: Int) : HomeAction

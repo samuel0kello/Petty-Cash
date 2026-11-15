@@ -58,6 +58,7 @@ dependencies {
     implementation(project(":features:spends:impl"))
     implementation(project(":features:refunds:impl"))
     implementation(project(":features:floats:impl"))
+    implementation(project(":features:reconciliation:impl"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

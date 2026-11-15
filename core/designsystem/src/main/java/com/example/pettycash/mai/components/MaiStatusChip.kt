@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.example.pettycash.mai.theme.MaiTheme
 
 enum class MaiStatus {
-    Paid, Approved, Pending, NeedsInfo, Rejected, NoReceipt, ReceiptOverdue, WaitingToSend, Confirming;
+    Paid, Approved, Pending, NeedsInfo, Rejected, NoReceipt, ReceiptOverdue, WaitingToSend, Confirming, Balanced;
 
     val label: String
         get() = when (this) {
@@ -41,6 +41,7 @@ enum class MaiStatus {
             ReceiptOverdue -> "Receipt overdue"
             WaitingToSend -> "Waiting to send"
             Confirming -> "Confirming"
+            Balanced -> "Balanced"
         }
 }
 
@@ -55,6 +56,7 @@ private fun MaiStatus.colors(): StatusColors {
         MaiStatus.Pending, MaiStatus.Confirming -> StatusColors(ext.infoContainer, ext.onInfoContainer)
         MaiStatus.NeedsInfo, MaiStatus.NoReceipt -> StatusColors(ext.warningContainer, ext.onWarningContainer)
         MaiStatus.Rejected, MaiStatus.ReceiptOverdue -> StatusColors(scheme.errorContainer, scheme.onErrorContainer)
+        MaiStatus.Balanced -> StatusColors(ext.successContainer, ext.onSuccessContainer)
         MaiStatus.WaitingToSend -> StatusColors(scheme.surfaceContainerHighest, scheme.onSurfaceVariant)
     }
 }
@@ -69,6 +71,7 @@ fun MaiStatus.icon(): ImageVector = when (this) {
     MaiStatus.ReceiptOverdue -> Icons.Filled.Error
     MaiStatus.WaitingToSend -> Icons.Filled.CloudOff
     MaiStatus.Confirming -> Icons.Filled.Sync
+    MaiStatus.Balanced -> Icons.Filled.CheckCircle
 }
 
 @Composable

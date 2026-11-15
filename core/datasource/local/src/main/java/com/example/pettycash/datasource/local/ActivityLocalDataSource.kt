@@ -15,11 +15,13 @@ class ActivityLocalDataSource(private val context: Context) {
         val SPENDS_JSON = stringPreferencesKey("spends_json")
         val REFUNDS_JSON = stringPreferencesKey("refunds_json")
         val TOPUPS_JSON = stringPreferencesKey("topups_json")
+        val RECONCILIATION_JSON = stringPreferencesKey("reconciliation_json")
     }
 
     val spendsJson: Flow<String?> = context.activityDataStore.data.map { it[Keys.SPENDS_JSON] }
     val refundsJson: Flow<String?> = context.activityDataStore.data.map { it[Keys.REFUNDS_JSON] }
     val topupsJson: Flow<String?> = context.activityDataStore.data.map { it[Keys.TOPUPS_JSON] }
+    val reconciliationJson: Flow<String?> = context.activityDataStore.data.map { it[Keys.RECONCILIATION_JSON] }
 
     suspend fun saveSpendsJson(value: String) {
         context.activityDataStore.edit { it[Keys.SPENDS_JSON] = value }
@@ -31,5 +33,9 @@ class ActivityLocalDataSource(private val context: Context) {
 
     suspend fun saveTopupsJson(value: String) {
         context.activityDataStore.edit { it[Keys.TOPUPS_JSON] = value }
+    }
+
+    suspend fun saveReconciliationJson(value: String) {
+        context.activityDataStore.edit { it[Keys.RECONCILIATION_JSON] = value }
     }
 }

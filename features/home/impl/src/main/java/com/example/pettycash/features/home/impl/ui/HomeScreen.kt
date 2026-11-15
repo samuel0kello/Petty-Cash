@@ -226,6 +226,11 @@ private fun HomeSections(
             HomeInfoCardView(card = card, filled = false, onClick = { onAction(HomeAction.OnUnaccountedCardClick) })
         }
     }
+    if (dashboard.showCountReminder) {
+        SectionMargin {
+            CountReminderCard(onStart = { onAction(HomeAction.OnCountReminderClick) })
+        }
+    }
     dashboard.receiptsCard?.let { card ->
         SectionMargin {
             HomeInfoCardView(card = card, filled = true, onClick = { onAction(HomeAction.OnReceiptsCardClick) })
@@ -265,6 +270,36 @@ private fun SectionHeading(text: String) {
             .padding(horizontal = MaiTheme.spacing.xxl)
             .padding(top = MaiTheme.spacing.sm),
     )
+}
+
+@Composable
+private fun CountReminderCard(onStart: () -> Unit) {
+    val scheme = MaterialTheme.colorScheme
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        shape = MaiTheme.shapes.md,
+        color = scheme.surfaceContainerHighest,
+    ) {
+        Column(
+            modifier = Modifier.padding(MaiTheme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.sm),
+        ) {
+            Text(
+                stringResource(R.string.home_count_reminder_title),
+                style = MaterialTheme.typography.titleMedium,
+                color = scheme.onSurface,
+            )
+            Text(
+                stringResource(R.string.home_count_reminder_body),
+                style = MaterialTheme.typography.bodyMedium,
+                color = scheme.onSurfaceVariant,
+            )
+            com.example.pettycash.mai.components.MaiButton(
+                text = stringResource(R.string.home_count_reminder_action),
+                onClick = onStart,
+            )
+        }
+    }
 }
 
 @Composable
