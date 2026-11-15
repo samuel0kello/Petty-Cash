@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_brand_name">PettyCash</string>
+    <string name="onboarding_splash_tagline">Every shilling, accounted for.</string>
+
+    <string name="onboarding_intro_skip">Skip</string>
+    <string name="onboarding_intro_next">Next</string>
+    <string name="onboarding_intro_get_started">Get started</string>
+    <string name="onboarding_intro_page_of">Page %1$d of %2$d</string>
+
+    <string name="onboarding_intro_1_title">Record every spend</string>
+    <string name="onboarding_intro_1_body">Snap the receipt, add the M-Pesa code, done.</string>
+    <string name="onboarding_intro_2_title">Approve and pay by M-Pesa</string>
+    <string name="onboarding_intro_2_body">Requests reach the right person, and refunds arrive in minutes.</string>
+    <string name="onboarding_intro_3_title">Close the month with no gaps</string>
+    <string name="onboarding_intro_3_body">Count the cash, see any difference, and explain it in one place.</string>
+
+    <string name="onboarding_welcome_title">How will you use PettyCash?</string>
+    <string name="onboarding_welcome_company">Set up my company</string>
+    <string name="onboarding_welcome_company_subtitle">For owners and managers</string>
+    <string name="onboarding_welcome_invited">I was invited</string>
+    <string name="onboarding_welcome_invited_subtitle">Join your team</string>
+    <string name="onboarding_welcome_existing_account">I already have an account</string>
+</resources>

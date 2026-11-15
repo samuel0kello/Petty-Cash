@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_get_started">Get started</string>
+    <string name="auth_phone_title">What\'s your phone number?</string>
+    <string name="auth_phone_field_label">Phone number</string>
+    <string name="auth_phone_prefix">+254</string>
+    <string name="auth_phone_hint">We\'ll send you a 6-digit code by SMS.</string>
+    <string name="auth_phone_invalid">Enter a valid Kenyan number, e.g. 0712 345 678</string>
+    <string name="auth_terms_lead">By continuing, you agree to our</string>
+    <string name="auth_terms">Terms</string>
+    <string name="auth_privacy">Privacy policy</string>
+    <string name="auth_continue">Continue</string>
+    <string name="auth_change_number">Change number</string>
+
+    <string name="auth_sms_title">Check your SMS</string>
+    <string name="auth_sms_subtitle">Enter the code sent to %1$s</string>
+    <string name="auth_sms_field">Code, 6 digits</string>
+    <string name="auth_sms_wrong">That code didn\'t match. %1$d tries left.</string>
+    <string name="auth_sms_expired">This code has expired.</string>
+    <string name="auth_sms_blocked_title">Too many tries. Try again in %1$s.</string>
+    <string name="auth_sms_blocked_body">Your account is safe. No money moved.</string>
+    <string name="auth_sms_resend">Resend code in %1$s</string>
+    <string name="auth_sms_resend_now">Resend code</string>
+
+    <string name="auth_pin_title">Your PIN</string>
+    <string name="auth_create_pin_title">Create a 4-digit PIN</string>
+    <string name="auth_create_pin_message">You\'ll use it to open the app and confirm payments.</string>
+    <string name="auth_confirm_pin_title">Enter your PIN again</string>
+    <string name="auth_confirm_pin_message">Use the keys below</string>
+    <string name="auth_pin_mismatch">PINs didn\'t match. Try again.</string>
+    <string name="auth_unlock_title">Welcome back</string>
+    <string name="auth_unlock_initials">GM</string>
+    <string name="auth_unlock_message">Enter your PIN</string>
+    <string name="auth_unlock_wrong">Wrong PIN. %1$d tries left.</string>
+    <string name="auth_forgot_pin">Forgot PIN?</string>
+
+    <string name="auth_fingerprint_title">Unlock with your fingerprint?</string>
+    <string name="auth_fingerprint_body">Open the app faster. You\'ll still use your PIN to confirm payments.</string>
+    <string name="auth_fingerprint_turn_on">Turn on</string>
+    <string name="auth_fingerprint_not_now">Not now</string>
+
+    <string name="auth_new_phone_title">New phone detected</string>
+    <string name="auth_new_phone_body">You can use the app now. An Admin must approve this phone before you can approve or send payments.</string>
+    <string name="auth_new_phone_continue">Continue</string>
+
+    <string name="auth_back">Back</string>
+</resources>

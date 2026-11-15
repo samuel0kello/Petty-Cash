@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="company_setup_title">Set up your company</string>
+    <string name="company_step">Step %1$d of %2$d</string>
+    <string name="company_next">Next</string>
+    <string name="company_back">Back</string>
+
+    <string name="company_details_company_name">Company name</string>
+    <string name="company_details_company_name_hint">The name on your registration.</string>
+    <string name="company_details_industry">Industry</string>
+    <string name="company_details_industry_hint">Pick the closest one.</string>
+    <string name="company_details_team_size">Team size</string>
+    <string name="company_details_kra_pin">KRA PIN (optional now)</string>
+    <string name="company_details_kra_pin_hint">You can add this later.</string>
+    <string name="company_details_reg">Business registration (optional now)</string>
+    <string name="company_details_reg_hint">You can add documents later.</string>
+
+    <string name="company_mpesa_title">Connect M-Pesa</string>
+    <string name="company_mpesa_paybill">Paybill</string>
+    <string name="company_mpesa_till">Till</string>
+    <string name="company_mpesa_number">Paybill number</string>
+    <string name="company_mpesa_number_hint">Used to pay staff and top up floats.</string>
+    <string name="company_mpesa_till_number">Till number</string>
+    <string name="company_mpesa_account">Account name</string>
+    <string name="company_mpesa_account_hint">Shown on payments.</string>
+    <string name="company_mpesa_connect">Connect M-Pesa</string>
+    <string name="company_mpesa_later">Do this later</string>
+
+    <string name="company_mpesa_connected_title">M-Pesa %1$s %2$s connected</string>
+    <string name="company_mpesa_connected_body">You can now pay staff and top up floats from the app.</string>
+    <string name="company_continue">Continue</string>
+
+    <string name="company_float_title">Your first float</string>
+    <string name="company_float_name">Float name</string>
+    <string name="company_float_name_hint">What people will see on their home screen.</string>
+    <string name="company_float_amount">Starting amount</string>
+    <string name="company_float_amount_hint">Money you start with in this float.</string>
+    <string name="company_float_custodian">Custodian</string>
+    <string name="company_float_custodian_hint">The person who holds the cash.</string>
+    <string name="company_float_custodian_later">Invite later</string>
+    <string name="company_float_spend_limit">Single-spend limit</string>
+    <string name="company_float_spend_limit_hint">Bigger spends need approval.</string>
+    <string name="company_float_receipt_deadline">Receipt deadline</string>
+    <string name="company_float_receipt_deadline_hint">How long people have to add a receipt.</string>
+    <string name="company_float_no_receipt_limit">No-receipt limit</string>
+    <string name="company_float_no_receipt_hint">Most you can spend without a receipt.</string>
+
+    <string name="company_approval_title">Who approves requests?</string>
+    <string name="company_approval_admins">Admins</string>
+    <string name="company_approval_selected">Selected Approvers</string>
+    <string name="company_approval_banner">Nobody can approve their own request.</string>
+    <string name="company_approval_categories">Categories</string>
+
+    <string name="company_projects_title">Projects and sites</string>
+    <string name="company_projects_label">Projects</string>
+    <string name="company_projects_add">Add project</string>
+    <string name="company_projects_dialog_title">New project</string>
+    <string name="company_projects_name_hint">Project name</string>
+    <string name="company_sites_label">Sites</string>
+    <string name="company_sites_add">Add site</string>
+    <string name="company_sites_dialog_title">New site</string>
+    <string name="company_sites_name_hint">Site name</string>
+    <string name="company_vouchers_label">Voucher numbers</string>
+    <string name="company_vouchers_fresh">Start at PCV-0001</string>
+    <string name="company_vouchers_continue">Continue from my paper book</string>
+    <string name="company_vouchers_last">Last number in your paper book</string>
+    <string name="company_vouchers_last_hint">Only needed if you continue from your paper book.</string>
+
+    <string name="company_invite_title">Invite your team</string>
+    <string name="company_invite_subtitle">Add people now, or skip and do it later.</string>
+    <string name="company_invite_phone">Phone number</string>
+    <string name="company_invite_phone_hint">They get an SMS with a link.</string>
+    <string name="company_invite_role">Role: Member</string>
+    <string name="company_invite_approver">Approver</string>
+    <string name="company_invite_approver_hint">Can approve requests.</string>
+    <string name="company_invite_custodian">Custodian</string>
+    <string name="company_invite_custodian_hint">Looks after a float and records spends.</string>
+    <string name="company_invite_contacts">Add from contacts</string>
+    <string name="company_invite_link">Share invite link</string>
+    <string name="company_invite_send">Send invites</string>
+    <string name="company_invite_skip">Skip</string>
+    <string name="company_invite_remove">Remove</string>
+
+    <string name="company_industry_energy">Energy and solar</string>
+    <string name="company_industry_construction">Construction</string>
+    <string name="company_industry_retail">Retail and trade</string>
+    <string name="company_industry_agriculture">Agriculture</string>
+    <string name="company_industry_health">Health</string>
+    <string name="company_industry_education">Education</string>
+    <string name="company_industry_other">Other</string>
+
+    <string name="company_team_1_5">1–5</string>
+    <string name="company_team_6_20">6–20</string>
+    <string name="company_team_21_50">21–50</string>
+    <string name="company_team_50_plus">50+</string>
+
+    <string name="company_cat_transport">Transport</string>
+    <string name="company_cat_office">Office supplies</string>
+    <string name="company_cat_fuel">Fuel</string>
+    <string name="company_cat_meals">Meals</string>
+    <string name="company_cat_repairs">Repairs</string>
+    <string name="company_cat_other">Other</string>
+
+    <string name="company_save">Save</string>
+    <string name="company_cancel">Cancel</string>
+</resources>
