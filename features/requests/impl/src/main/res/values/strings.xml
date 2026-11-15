@@ -35,7 +35,7 @@
     <string name="request_detail_withdraw">Withdraw request</string>
     <string name="request_detail_where">Where it is now</string>
     <string name="approvals_title">Approvals</string>
-    <string name="approvals_tab_waiting">Waiting</string>
+    <string name="approvals_tab_waiting">Pending</string>
     <string name="approvals_tab_approved">Approved</string>
     <string name="approvals_tab_rejected">Rejected</string>
     <string name="approvals_total_waiting">Total waiting: KES %1$s</string>
@@ -73,6 +73,12 @@
     <string name="approval_pay_to">Pay to</string>
     <string name="approval_pin_title">Confirm payment of KES %1$s</string>
     <string name="approval_pin_message">Enter your PIN to send the money.</string>
+    <string name="approval_detail_title">Request detail</string>
+    <string name="approval_checks_title">Automatic checks</string>
+    <string name="approval_check_receipt_not_needed">Receipt not needed yet</string>
+    <string name="approval_check_receipt_attached">Receipt attached and readable</string>
+    <string name="approval_check_project_open">Project is open</string>
+    <string name="approval_check_within_limit">Within KES %1$s limit</string>
     <string name="nav_home">Home</string>
     <string name="nav_approvals">Approvals</string>
     <string name="nav_float">Float</string>

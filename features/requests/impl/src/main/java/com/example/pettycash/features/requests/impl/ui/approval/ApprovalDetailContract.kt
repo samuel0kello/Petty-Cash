@@ -16,6 +16,7 @@ data class ApprovalDetailState(
     val rejectedSnackbar: Boolean = false,
     val payoutReference: String = "",
     val payoutFeeKes: Long = 22,
+    val limitKes: Long = 5_000,
 )
 
 sealed interface ApprovalDetailAction {

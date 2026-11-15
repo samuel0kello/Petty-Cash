@@ -14,8 +14,8 @@ class ApprovalsViewModel(
 
     init {
         repository.snapshot
-            .onEach { (requests, _) ->
-                updateState { it.copy(requests = requests, loaded = true) }
+            .onEach { (requests, context) ->
+                updateState { it.copy(requests = requests, loaded = true, limitKes = context.perRequestLimitKes) }
             }
             .launchIn(viewModelScope)
     }

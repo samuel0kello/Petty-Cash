@@ -1,8 +1,8 @@
 package com.example.pettycash.features.requests.impl.ui.approvals
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,21 +20,16 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.pettycash.features.requests.impl.R
-import com.example.pettycash.features.requests.impl.data.CashRequest
-import com.example.pettycash.features.requests.impl.data.RequestStatus
-import com.example.pettycash.mai.components.MaiCard
+import com.example.pettycash.features.requests.impl.ui.approval.ApprovalRequestCard
+import com.example.pettycash.features.requests.impl.ui.approval.approvalStatus
 import com.example.pettycash.mai.components.MaiEmptyState
 import com.example.pettycash.mai.components.MaiNavItem
 import com.example.pettycash.mai.components.MaiNavigationBar
 import com.example.pettycash.mai.components.MaiSegmentedButton
-import com.example.pettycash.mai.components.MaiStatus
-import com.example.pettycash.mai.components.MaiStatusChip
 import com.example.pettycash.mai.components.MaiTopAppBar
 import com.example.pettycash.mai.components.formatAmount
 import com.example.pettycash.mai.theme.MaiTheme
@@ -73,14 +68,17 @@ internal fun ApprovalsScreen(
                     options = ApprovalTab.entries,
                     selected = state.tab,
                     onSelect = { onAction(ApprovalsAction.OnTabSelect(it)) },
-                    label = {
-                        stringResource(
-                            when (it) {
+                    label = { tab ->
+                        val base = stringResource(
+                            when (tab) {
                                 ApprovalTab.Waiting -> R.string.approvals_tab_waiting
                                 ApprovalTab.Approved -> R.string.approvals_tab_approved
                                 ApprovalTab.Rejected -> R.string.approvals_tab_rejected
                             },
                         )
+                        if (tab == ApprovalTab.Waiting) {
+                            "$base · ${requestsForTab(state, ApprovalTab.Waiting).size}"
+                        } else base
                     },
                 )
             }
@@ -90,7 +88,7 @@ internal fun ApprovalsScreen(
                         R.string.approvals_total_waiting,
                         formatAmount(waitingTotalKes(state).toString()),
                     ),
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(
                         horizontal = MaiTheme.spacing.xxl,
@@ -121,7 +119,13 @@ internal fun ApprovalsScreen(
                     verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.md),
                 ) {
                     items(requests, key = { it.id }) { request ->
-                        ApprovalCard(request) { onAction(ApprovalsAction.OnRequestClick(request.id)) }
+                        ApprovalRequestCard(
+                            request = request,
+                            limitKes = state.limitKes,
+                            onApprove = { onAction(ApprovalsAction.OnRequestClick(request.id)) },
+                            onReject = { onAction(ApprovalsAction.OnRequestClick(request.id)) },
+                            modifier = Modifier.clickable { onAction(ApprovalsAction.OnRequestClick(request.id)) },
+                        )
                     }
                 }
             }
@@ -140,58 +144,3 @@ internal fun ApprovalsScreen(
     }
 }
 
-@Composable
-private fun ApprovalCard(request: CashRequest, onClick: () -> Unit) {
-    MaiCard(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
-        Column(
-            modifier = Modifier.padding(MaiTheme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.sm),
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    request.requesterName,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.weight(1f),
-                )
-                MaiStatusChip(status = statusFor(request.status))
-            }
-            Text(
-                request.purpose,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    "${request.voucherCode} · ${request.category} · needed ${request.neededBy}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.weight(1f),
-                )
-                Text(
-                    "KES ${formatAmount(request.amountKes.toString())}",
-                    style = MaiTheme.customTypography.amountMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.End,
-                )
-            }
-        }
-    }
-}
-
-private fun statusFor(status: String): MaiStatus = when (status) {
-    RequestStatus.PENDING -> MaiStatus.Pending
-    RequestStatus.INFO_REQUESTED -> MaiStatus.NeedsInfo
-    RequestStatus.APPROVED -> MaiStatus.Approved
-    RequestStatus.REJECTED -> MaiStatus.Rejected
-    RequestStatus.PAID -> MaiStatus.Paid
-    else -> MaiStatus.Pending
-}

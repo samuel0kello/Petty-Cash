@@ -22,9 +22,9 @@ class ApprovalDetailViewModel(
 
     init {
         repository.snapshot
-            .onEach { (requests, _) ->
+            .onEach { (requests, context) ->
                 val request = requests.firstOrNull { it.id == requestId }
-                updateState { it.copy(request = request, loaded = true) }
+                updateState { it.copy(request = request, loaded = true, limitKes = context.perRequestLimitKes) }
             }
             .launchIn(viewModelScope)
         viewModelScope.launch { pinValue = authLocal.pinValue() ?: "" }

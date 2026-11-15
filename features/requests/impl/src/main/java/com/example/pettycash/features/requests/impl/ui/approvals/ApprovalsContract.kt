@@ -8,6 +8,7 @@ data class ApprovalsState(
     val tab: ApprovalTab = ApprovalTab.Waiting,
     val requests: List<CashRequest> = emptyList(),
     val loaded: Boolean = false,
+    val limitKes: Long = 5_000,
 )
 
 sealed interface ApprovalsAction {

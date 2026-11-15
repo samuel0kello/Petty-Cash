@@ -29,6 +29,7 @@ data class CashRequest(
     val createdAt: Long,
     val paidReference: String = "",
     val reviewNote: String = "",
+    val kind: String = "Cash in advance",
 )
 
 object RequestStatus {

@@ -48,8 +48,6 @@ import com.example.pettycash.mai.components.MaiChip
 import com.example.pettycash.mai.components.MaiPinDots
 import com.example.pettycash.mai.components.MaiPinPad
 import com.example.pettycash.mai.components.MaiPinPadState
-import com.example.pettycash.mai.components.MaiStatus
-import com.example.pettycash.mai.components.MaiStatusChip
 import com.example.pettycash.mai.components.MaiTextField
 import com.example.pettycash.mai.components.MaiTopAppBar
 import com.example.pettycash.mai.components.formatAmount
@@ -80,7 +78,7 @@ internal fun ApprovalDetailScreen(
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surface) {
         Column(Modifier.fillMaxSize()) {
             MaiTopAppBar(
-                title = request?.voucherCode ?: stringResource(R.string.approvals_title),
+                title = stringResource(R.string.approval_detail_title),
                 onNavigationClick = { onAction(ApprovalDetailAction.Back) },
             )
             when (state.sheet) {
@@ -115,79 +113,31 @@ private fun ColumnScope.DetailContent(state: ApprovalDetailState, onAction: (App
             .weight(1f)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = MaiTheme.spacing.xxl, vertical = MaiTheme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.lg),
     ) {
-        Column(verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.xs)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    request.requesterName,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                MaiStatusChip(status = statusFor(request.status))
-            }
-            Text(
-                "KES ${formatAmount(request.amountKes.toString())}",
-                style = MaiTheme.customTypography.amountLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            Text(
-                request.purpose,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-        MaiCard(modifier = Modifier.fillMaxWidth()) {
-            Column(
-                modifier = Modifier.padding(MaiTheme.spacing.lg),
-                verticalArrangement = Arrangement.spacedBy(MaiTheme.spacing.md),
-            ) {
-                DetailRow(stringResource(R.string.request_field_category), request.category)
-                DetailRow(stringResource(R.string.request_field_project), request.project)
-                DetailRow(stringResource(R.string.request_field_site), request.site)
-                DetailRow(stringResource(R.string.request_review_needed_by), request.neededBy)
-                if (request.note.isNotBlank()) {
-                    DetailRow(stringResource(R.string.request_field_note), request.note)
-                }
-                if (request.reviewNote.isNotBlank() && request.status != RequestStatus.PENDING) {
-                    DetailRow("Review note", request.reviewNote)
-                }
-                if (request.paidReference.isNotBlank()) {
-                    DetailRow("M-Pesa reference", request.paidReference)
-                }
-            }
-        }
+        ApprovalRequestCard(
+            request = request,
+            limitKes = state.limitKes,
+            onApprove = { onAction(ApprovalDetailAction.Approve) },
+            onReject = { onAction(ApprovalDetailAction.Reject) },
+        )
         if (request.status == RequestStatus.PENDING || request.status == RequestStatus.INFO_REQUESTED) {
-            Spacer(Modifier.height(MaiTheme.spacing.md))
             MaiButton(
-                text = stringResource(R.string.approval_approve),
-                onClick = { onAction(ApprovalDetailAction.Approve) },
-                modifier = Modifier.fillMaxWidth(),
+                text = stringResource(R.string.approval_ask_info),
+                onClick = { onAction(ApprovalDetailAction.AskInfo) },
+                type = MaiButtonType.Tonal,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = MaiTheme.spacing.md),
             )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                MaiButton(
-                    text = stringResource(R.string.approval_ask_info),
-                    onClick = { onAction(ApprovalDetailAction.AskInfo) },
-                    type = MaiButtonType.Text,
-                )
-                MaiButton(
-                    text = stringResource(R.string.approval_reject),
-                    onClick = { onAction(ApprovalDetailAction.Reject) },
-                    type = MaiButtonType.Text,
-                )
-            }
-        } else if (request.status == RequestStatus.APPROVED) {
-            MaiButton(
-                text = stringResource(R.string.approval_review_payout),
-                onClick = { onAction(ApprovalDetailAction.PayoutConfirm) },
-                modifier = Modifier.fillMaxWidth(),
+        }
+        if (request.reviewNote.isNotBlank() && request.status != RequestStatus.PENDING) {
+            Text(
+                request.reviewNote,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = MaiTheme.spacing.md),
             )
         }
         Spacer(Modifier.height(MaiTheme.spacing.lg))
@@ -556,13 +506,4 @@ private fun RejectedSnackbar(onAction: (ApprovalDetailAction) -> Unit) {
             }
         }
     }
-}
-
-private fun statusFor(status: String): MaiStatus = when (status) {
-    RequestStatus.PENDING -> MaiStatus.Pending
-    RequestStatus.INFO_REQUESTED -> MaiStatus.NeedsInfo
-    RequestStatus.APPROVED -> MaiStatus.Approved
-    RequestStatus.REJECTED -> MaiStatus.Rejected
-    RequestStatus.PAID -> MaiStatus.Paid
-    else -> MaiStatus.Pending
 }
