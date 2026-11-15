@@ -7,6 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.Composable
@@ -55,7 +57,10 @@ fun App() {
     val navigator = remember(backStack) { Navigator(backStack) }
 
     CompositionLocalProvider(LocalNavigator provides navigator) {
-        Box(Modifier.fillMaxSize().statusBarsPadding()) {
+        Surface(
+            modifier = Modifier.fillMaxSize().statusBarsPadding(),
+            color = MaterialTheme.colorScheme.background,
+        ) {
             NavDisplay(
                 backStack = backStack,
                 entryProvider = koinEntryProvider(),
