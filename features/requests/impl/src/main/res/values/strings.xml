@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="request_cash_title">Request cash</string>
+    <string name="request_details_title">Details</string>
+    <string name="request_review_title">Review</string>
+    <string name="request_amount_label">How much do you need?</string>
+    <string name="request_amount_limit">Your limit is KES %1$s per request.</string>
+    <string name="request_amount_over_limit">That is more than your KES %1$s limit.</string>
+    <string name="request_next">Next</string>
+    <string name="request_back">Back</string>
+    <string name="request_send">Send request</string>
+    <string name="request_done">Done</string>
+    <string name="request_field_purpose">Purpose</string>
+    <string name="request_field_purpose_hint">What is the money for?</string>
+    <string name="request_field_category">Category</string>
+    <string name="request_field_category_hint">Pick one.</string>
+    <string name="request_field_project">Project</string>
+    <string name="request_field_project_hint">Which job is this for?</string>
+    <string name="request_field_site">Site</string>
+    <string name="request_field_site_hint">Where will you spend it?</string>
+    <string name="request_field_needed_by">Needed by</string>
+    <string name="request_field_needed_by_hint">The date you need the money.</string>
+    <string name="request_field_note">Note (optional)</string>
+    <string name="request_field_note_hint">Anything %1$s should know.</string>
+    <string name="request_review_amount">Amount</string>
+    <string name="request_review_needed_by">Needed by</string>
+    <string name="request_review_reviewer">%1$s will review this.</string>
+    <string name="request_sent_title">Request sent</string>
+    <string name="request_sent_body">We\'ll notify you when it\'s approved.</string>
+    <string name="request_detail_pending">Pending</string>
+    <string name="request_detail_paid_title">Request paid</string>
+    <string name="request_detail_paid_body">KES %1$s was sent to your M-Pesa.</string>
+    <string name="request_detail_receipt_deadline">Add your receipt by %1$s.</string>
+    <string name="request_detail_add_receipt">Add receipt</string>
+    <string name="request_detail_withdraw">Withdraw request</string>
+    <string name="request_detail_where">Where it is now</string>
+</resources>
