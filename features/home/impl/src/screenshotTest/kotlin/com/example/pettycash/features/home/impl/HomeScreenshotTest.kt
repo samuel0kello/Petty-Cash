@@ -82,6 +82,34 @@ fun RoleSwitcherScreenshot() {
 }
 
 @PreviewTest
+@Preview(showBackground = true, widthDp = 360, heightDp = 800, name = "New sheet member")
+@Composable
+fun NewSheetMemberScreenshot() {
+    MaiTheme {
+        PreviewDevice {
+            HomeScreen(
+                state = HomeState(dashboard = memberDashboard(), newSheetOpen = true),
+                onAction = {},
+            )
+        }
+    }
+}
+
+@PreviewTest
+@Preview(showBackground = true, widthDp = 360, heightDp = 800, name = "New sheet custodian")
+@Composable
+fun NewSheetCustodianScreenshot() {
+    MaiTheme {
+        PreviewDevice {
+            HomeScreen(
+                state = HomeState(dashboard = custodianDashboard(), newSheetOpen = true),
+                onAction = {},
+            )
+        }
+    }
+}
+
+@PreviewTest
 @Preview(showBackground = true, widthDp = 360, heightDp = 993, name = "Admin home first visit")
 @Composable
 fun FirstVisitHomeScreenshot() {

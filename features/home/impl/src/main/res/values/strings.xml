@@ -15,4 +15,11 @@
     <string name="home_coach_mark_title">Request cash in seconds</string>
     <string name="home_coach_mark_message">Tap here whenever you need money from the float. Attach a receipt and your approver gets notified.</string>
     <string name="home_coach_mark_action">Got it</string>
+    <string name="home_new_sheet_title">What do you want to do?</string>
+    <string name="home_sheet_record_spend">Record a spend</string>
+    <string name="home_sheet_record_spend_help">Save money you spent from the float.</string>
+    <string name="home_sheet_request_cash">Request cash</string>
+    <string name="home_sheet_request_cash_help">Ask for money before you spend it.</string>
+    <string name="home_sheet_claim_refund">Claim a refund</string>
+    <string name="home_sheet_claim_refund_help">Get back money you paid yourself.</string>
 </resources>

@@ -17,6 +17,7 @@ import com.example.pettycash.features.home.api.HomeHistoryNavKey
 import com.example.pettycash.features.home.api.HomeMoreNavKey
 import com.example.pettycash.features.home.api.HomeNavKey
 import com.example.pettycash.features.home.api.HomeNewRequestNavKey
+import com.example.pettycash.features.requests.api.RequestCashNavKey
 import com.example.pettycash.features.home.api.HomeProfileNavKey
 import com.example.pettycash.features.home.api.HomeReconciliationNavKey
 import com.example.pettycash.features.home.api.HomeRecordSpendNavKey
@@ -57,7 +58,8 @@ val HomeImplModule = module {
                         HomeTab.History -> navigator.goTo(HomeHistoryNavKey)
                         HomeTab.Profile -> navigator.goTo(HomeProfileNavKey)
                     }
-                    HomeEvent.NavigateToNewRequest -> navigator.goTo(HomeNewRequestNavKey)
+                    HomeEvent.NavigateToRequestCash -> navigator.goTo(RequestCashNavKey)
+                    HomeEvent.NavigateToClaimRefund -> navigator.goTo(HomeNewRequestNavKey)
                     HomeEvent.NavigateToRecordSpend -> navigator.goTo(HomeRecordSpendNavKey)
                     HomeEvent.NavigateToApprovals -> navigator.goTo(HomeApprovalsNavKey)
                     HomeEvent.NavigateToFloat -> navigator.goTo(HomeFloatNavKey)
@@ -80,7 +82,7 @@ val HomeImplModule = module {
     navigation<HomeRequestsNavKey> { HomeStubScreen("Requests") }
     navigation<HomeHistoryNavKey> { HomeStubScreen("History") }
     navigation<HomeProfileNavKey> { HomeStubScreen("Profile") }
-    navigation<HomeNewRequestNavKey> { HomeStubScreen("New request") }
+    navigation<HomeNewRequestNavKey> { HomeStubScreen("Claim a refund") }
     navigation<HomeRecordSpendNavKey> { HomeStubScreen("Record a spend") }
     navigation<HomeActivityNavKey> { HomeStubScreen("Activity") }
     navigation<HomeReconciliationNavKey> { HomeStubScreen("Reconciliation") }

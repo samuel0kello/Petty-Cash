@@ -1,5 +1,6 @@
 package com.example.pettycash.features.home.impl.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -20,7 +22,9 @@ import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MoreHoriz
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ReceiptLong
 import androidx.compose.material.icons.filled.RequestQuote
+import androidx.compose.material.icons.filled.Savings
 import androidx.compose.material.icons.filled.TaskAlt
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.Home
@@ -45,6 +49,7 @@ import com.example.pettycash.mai.components.MaiBanner
 import com.example.pettycash.mai.components.MaiCoachMark
 import com.example.pettycash.mai.components.MaiBannerTone
 import com.example.pettycash.mai.components.MaiExtendedFab
+import com.example.pettycash.mai.components.MaiListItem
 import com.example.pettycash.mai.components.MaiNavigationBar
 import com.example.pettycash.mai.components.MaiNavItem
 import com.example.pettycash.mai.components.MaiRoleOption
@@ -115,6 +120,60 @@ internal fun HomeScreen(
                 onAction = { onAction(HomeAction.OnCoachMarkDismiss) },
                 bottomPadding = 144.dp,
             )
+        }
+        if (state.newSheetOpen && dashboard != null) {
+            NewSheet(dashboard.role, onAction)
+        }
+    }
+}
+
+@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+@Composable
+private fun NewSheet(role: HomeRole, onAction: (HomeAction) -> Unit) {
+    androidx.compose.material3.ModalBottomSheet(
+        onDismissRequest = { onAction(HomeAction.OnNewSheetDismiss) },
+        containerColor = MaterialTheme.colorScheme.surface,
+    ) {
+        Column(Modifier.fillMaxWidth()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = MaiTheme.spacing.sm),
+                contentAlignment = Alignment.Center,
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(width = 32.dp, height = 4.dp)
+                        .background(MaterialTheme.colorScheme.outlineVariant, androidx.compose.foundation.shape.RoundedCornerShape(2.dp)),
+                )
+            }
+            Text(
+                stringResource(R.string.home_new_sheet_title),
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(horizontal = MaiTheme.spacing.xxl, vertical = MaiTheme.spacing.md),
+            )
+            if (role == HomeRole.Custodian) {
+                MaiListItem(
+                    title = stringResource(R.string.home_sheet_record_spend),
+                    subtitle = stringResource(R.string.home_sheet_record_spend_help),
+                    leadingIcon = Icons.Filled.ReceiptLong,
+                    onClick = { onAction(HomeAction.OnSheetRecordSpend) },
+                )
+            }
+            MaiListItem(
+                title = stringResource(R.string.home_sheet_request_cash),
+                subtitle = stringResource(R.string.home_sheet_request_cash_help),
+                leadingIcon = Icons.Filled.RequestQuote,
+                onClick = { onAction(HomeAction.OnSheetRequestCash) },
+            )
+            MaiListItem(
+                title = stringResource(R.string.home_sheet_claim_refund),
+                subtitle = stringResource(R.string.home_sheet_claim_refund_help),
+                leadingIcon = Icons.Filled.Savings,
+                onClick = { onAction(HomeAction.OnSheetClaimRefund) },
+            )
+            Spacer(Modifier.size(MaiTheme.spacing.md))
         }
     }
 }

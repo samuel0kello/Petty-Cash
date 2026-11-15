@@ -10,4 +10,5 @@ dependencies {
     implementation(project(":features:home:api"))
     implementation(project(":features:company:api"))
     implementation(project(":features:invite:api"))
+    implementation(project(":features:requests:api"))
 }

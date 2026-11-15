@@ -96,16 +96,23 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `fab emits role specific destination`() = runTest(dispatcher) {
-        val memberVm = HomeViewModel(FakeHomeRepository(HomeRole.Member))
-        memberVm.state.first { it.dashboard != null }
-        memberVm.onAction(HomeAction.OnFabClick)
-        assertEquals(HomeEvent.NavigateToNewRequest, memberVm.event.first())
+    fun `fab opens new sheet and sheet actions navigate`() = runTest(dispatcher) {
+        val viewModel = HomeViewModel(FakeHomeRepository(HomeRole.Member))
+        viewModel.state.first { it.dashboard != null }
+        viewModel.onAction(HomeAction.OnFabClick)
+        assertTrue(viewModel.state.first { it.newSheetOpen }.newSheetOpen)
 
-        val custodianVm = HomeViewModel(FakeHomeRepository(HomeRole.Custodian))
-        custodianVm.state.first { it.dashboard != null }
-        custodianVm.onAction(HomeAction.OnFabClick)
-        assertEquals(HomeEvent.NavigateToRecordSpend, custodianVm.event.first())
+        viewModel.onAction(HomeAction.OnSheetRequestCash)
+        assertEquals(HomeEvent.NavigateToRequestCash, viewModel.event.first())
+        assertTrue(!viewModel.state.first { !it.newSheetOpen }.newSheetOpen)
+
+        viewModel.onAction(HomeAction.OnFabClick)
+        viewModel.onAction(HomeAction.OnSheetRecordSpend)
+        assertEquals(HomeEvent.NavigateToRecordSpend, viewModel.event.first())
+
+        viewModel.onAction(HomeAction.OnFabClick)
+        viewModel.onAction(HomeAction.OnSheetClaimRefund)
+        assertEquals(HomeEvent.NavigateToClaimRefund, viewModel.event.first())
     }
 
     @Test

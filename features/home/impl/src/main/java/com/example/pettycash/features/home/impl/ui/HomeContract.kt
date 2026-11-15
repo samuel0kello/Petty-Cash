@@ -7,6 +7,7 @@ data class HomeState(
     val dashboard: HomeDashboard? = null,
     val roleSwitcherOpen: Boolean = false,
     val showCoachMark: Boolean = false,
+    val newSheetOpen: Boolean = false,
 )
 
 sealed interface HomeAction {
@@ -15,6 +16,10 @@ sealed interface HomeAction {
     data class OnRoleSelect(val index: Int) : HomeAction
     data class OnTabSelect(val tab: HomeTab) : HomeAction
     data object OnFabClick : HomeAction
+    data object OnNewSheetDismiss : HomeAction
+    data object OnSheetRequestCash : HomeAction
+    data object OnSheetRecordSpend : HomeAction
+    data object OnSheetClaimRefund : HomeAction
     data object OnBalanceClick : HomeAction
     data object OnTopUpClick : HomeAction
     data object OnApprovalCardClick : HomeAction
@@ -27,8 +32,9 @@ sealed interface HomeAction {
 
 sealed interface HomeEvent {
     data class NavigateToTab(val tab: HomeTab) : HomeEvent
-    data object NavigateToNewRequest : HomeEvent
+    data object NavigateToRequestCash : HomeEvent
     data object NavigateToRecordSpend : HomeEvent
+    data object NavigateToClaimRefund : HomeEvent
     data object NavigateToApprovals : HomeEvent
     data object NavigateToFloat : HomeEvent
     data object NavigateToPeople : HomeEvent
