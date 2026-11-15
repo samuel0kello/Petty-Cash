@@ -31,6 +31,8 @@ import android.app.Activity
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +41,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val context = LocalContext.current
             val settings = remember { AppSettingsLocalDataSource(context) }
-            val themeMode by settings.themeMode.collectAsState(initial = "system")
+            val initialTheme = remember { runBlocking { settings.themeMode.first() } }
+            val themeMode by settings.themeMode.collectAsState(initial = initialTheme)
             val systemDark = isSystemInDarkTheme()
             val darkTheme = when (themeMode) {
                 "light" -> false
@@ -69,13 +72,15 @@ fun App() {
 
     CompositionLocalProvider(LocalNavigator provides navigator) {
         Surface(
-            modifier = Modifier.fillMaxSize().statusBarsPadding(),
+            modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,
         ) {
+            Box(Modifier.fillMaxSize().statusBarsPadding()) {
             NavDisplay(
                 backStack = backStack,
                 entryProvider = koinEntryProvider(),
             )
+            }
         }
     }
 }
