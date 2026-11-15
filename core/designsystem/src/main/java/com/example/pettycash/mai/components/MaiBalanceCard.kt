@@ -20,6 +20,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.pettycash.mai.theme.MaiTheme
@@ -49,7 +51,11 @@ fun MaiBalanceCard(
     Surface(
         onClick = onClick ?: {},
         enabled = onClick != null,
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .semantics(mergeDescendants = true) {
+                contentDescription = "$floatName, KES ${formatKes(balanceKes)}. Issued KES ${formatKes(issuedKes)} · Spent KES ${formatKes(spentKes)}"
+            },
         shape = MaiTheme.shapes.lg,
         color = scheme.surfaceContainerHighest,
     ) {

@@ -13,6 +13,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.example.pettycash.mai.theme.MaiTheme
@@ -37,7 +40,8 @@ fun MaiBanner(
         MaiBannerTone.Error -> scheme.errorContainer to scheme.onErrorContainer
     }
     Surface(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth()
+            .semantics { liveRegion = LiveRegionMode.Polite },
         shape = MaiTheme.shapes.md,
         color = container,
         contentColor = content,

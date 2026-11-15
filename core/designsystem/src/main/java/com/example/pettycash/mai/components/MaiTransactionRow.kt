@@ -43,7 +43,7 @@ fun MaiTransactionRow(
     val scheme = MaterialTheme.colorScheme
     val sign = if (direction == MaiRowDirection.Out) "−" else "+"
     val amountText = if (showAmountSign) "$sign ${formatKes(amountKes)}" else formatKes(amountKes)
-    val spoken = "$title, $amountText, ${status.label}"
+    val spoken = "$title, $meta, $amountText, ${status.label}"
 
     Row(
         modifier = modifier

@@ -57,7 +57,7 @@ fun MaiNavigationBar(
                 Column(
                     modifier = Modifier
                         .weight(1f)
-                        .semantics { contentDescription = item.contentDescription ?: item.label }
+                        .semantics { contentDescription = "${item.contentDescription ?: item.label}, tab ${index + 1} of ${items.size}" }
                         .clickable { onSelect(index) },
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(4.dp),

@@ -20,6 +20,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -48,6 +51,7 @@ fun <T> MaiSegmentedButton(
         ) {
             options.forEachIndexed { index, option ->
                 val isSelected = option == selected
+                val optionLabel = label(option)
                 Row(
                     modifier = Modifier
                         .weight(1f)
@@ -59,7 +63,11 @@ fun <T> MaiSegmentedButton(
                                 MaterialTheme.colorScheme.surface
                             },
                         )
-                        .clickable { onSelect(option) },
+                        .clickable { onSelect(option) }
+                        .semantics {
+                            this.selected = isSelected
+                            contentDescription = optionLabel
+                        },
                     horizontalArrangement = Arrangement.spacedBy(
                         MaiTheme.spacing.sm,
                         Alignment.CenterHorizontally,
