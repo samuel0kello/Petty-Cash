@@ -69,17 +69,23 @@ class LocalSpendsRepository(
             companyLocal.profileJson,
             inviteLocal.membersJson,
             inviteLocal.memberName,
-        ) { spendsRaw, profileRaw, membersRaw, memberName ->
+            local.topupsJson,
+        ) { spendsRaw, profileRaw, membersRaw, memberName, topupsRaw ->
             val spends = spendsRaw?.let { decodeSpends(it) } ?: emptyList()
             val profile = profileRaw?.let { decodeProfile(it) }
             val starting = profile?.floatStartingAmount?.filter { it.isDigit() }?.toLongOrNull()
                 ?: DEFAULT_FLOAT_KES
+            val topups = topupsRaw?.let {
+                runCatching {
+                    json.decodeFromString(ListSerializer(TopUpDto.serializer()), it)
+                }.getOrDefault(emptyList())
+            } ?: emptyList()
             spends to SpendContext(
                 categories = profile?.categories?.takeIf { it.isNotEmpty() } ?: DEFAULT_CATEGORIES,
                 projects = profile?.projects ?: emptyList(),
                 sites = profile?.sites ?: emptyList(),
                 memberName = memberName?.takeIf { it.isNotBlank() } ?: "Custodian",
-                floatKes = (starting - spends.sumOf { it.amountKes }).coerceAtLeast(0),
+                floatKes = (starting + topups.sumOf { it.amountKes } - spends.sumOf { it.amountKes }).coerceAtLeast(0),
             )
         }
 
@@ -128,6 +134,9 @@ class LocalSpendsRepository(
         val sites: List<String> = emptyList(),
         val categories: List<String> = emptyList(),
     )
+
+    @Serializable
+    private data class TopUpDto(val amountKes: Long = 0)
 
     @Serializable
     private data class MemberDto(val name: String = "", val isSelf: Boolean = false)

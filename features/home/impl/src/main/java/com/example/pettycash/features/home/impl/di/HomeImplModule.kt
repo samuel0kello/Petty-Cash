@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import com.example.pettycash.datasource.local.HomeLocalDataSource
 import com.example.pettycash.features.company.api.CompanyOnboardingNavKey
 import com.example.pettycash.features.home.api.HomeActivityNavKey
-import com.example.pettycash.features.home.api.HomeFloatNavKey
+import com.example.pettycash.features.floats.api.FloatsNavKey
 import com.example.pettycash.features.home.api.HomeHistoryNavKey
 import com.example.pettycash.features.home.api.HomeMoreNavKey
 import com.example.pettycash.features.home.api.HomeNavKey
@@ -53,7 +53,7 @@ val HomeImplModule = module {
                     is HomeEvent.NavigateToTab -> when (event.tab) {
                         HomeTab.Home -> navigator.goBack()
                         HomeTab.Approvals -> navigator.goTo(ApprovalsNavKey)
-                        HomeTab.Float -> navigator.goTo(HomeFloatNavKey)
+                        HomeTab.Float -> navigator.goTo(FloatsNavKey)
                         HomeTab.People -> navigator.goTo(TeamNavKey)
                         HomeTab.More -> navigator.goTo(HomeMoreNavKey)
                         HomeTab.Requests -> navigator.goTo(HomeRequestsNavKey)
@@ -64,7 +64,7 @@ val HomeImplModule = module {
                     HomeEvent.NavigateToClaimRefund -> navigator.goTo(ClaimRefundNavKey)
                     HomeEvent.NavigateToRecordSpend -> navigator.goTo(RecordSpendNavKey)
                     HomeEvent.NavigateToApprovals -> navigator.goTo(ApprovalsNavKey)
-                    HomeEvent.NavigateToFloat -> navigator.goTo(HomeFloatNavKey)
+                    HomeEvent.NavigateToFloat -> navigator.goTo(FloatsNavKey)
                     HomeEvent.NavigateToPeople -> navigator.goTo(TeamNavKey)
                     HomeEvent.NavigateToMore -> navigator.goTo(HomeMoreNavKey)
                     HomeEvent.NavigateToRequests -> navigator.goTo(HomeRequestsNavKey)
@@ -78,7 +78,6 @@ val HomeImplModule = module {
         )
     }
 
-    navigation<HomeFloatNavKey> { HomeStubScreen("Float") }
     navigation<HomeMoreNavKey> { HomeStubScreen("More") }
     navigation<HomeRequestsNavKey> { HomeStubScreen("Requests") }
     navigation<HomeHistoryNavKey> { HomeStubScreen("History") }

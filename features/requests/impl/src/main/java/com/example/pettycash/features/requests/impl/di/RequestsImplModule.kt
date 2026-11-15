@@ -22,7 +22,7 @@ import com.example.pettycash.features.requests.impl.ui.detail.RequestDetailViewM
 import com.example.pettycash.features.requests.impl.ui.request.RequestCashEvent
 import com.example.pettycash.features.requests.impl.ui.request.RequestCashRoute
 import com.example.pettycash.features.requests.impl.ui.request.RequestCashViewModel
-import com.example.pettycash.features.home.api.HomeFloatNavKey
+import com.example.pettycash.features.floats.api.FloatsNavKey
 import com.example.pettycash.features.home.api.HomeMoreNavKey
 import com.example.pettycash.features.home.api.HomeNavKey
 import com.example.pettycash.features.invite.api.TeamNavKey
@@ -82,7 +82,7 @@ val RequestsImplModule = module {
                     is ApprovalsEvent.NavigateToDetail ->
                         navigator.goTo(ApprovalDetailNavKey(event.requestId))
                     ApprovalsEvent.NavigateHome -> navigator.goBack()
-                    ApprovalsEvent.NavigateToFloat -> navigator.goTo(HomeFloatNavKey)
+                    ApprovalsEvent.NavigateToFloat -> navigator.goTo(FloatsNavKey)
                     ApprovalsEvent.NavigateToPeople -> navigator.goTo(TeamNavKey)
                     ApprovalsEvent.NavigateToMore -> navigator.goTo(HomeMoreNavKey)
                 }

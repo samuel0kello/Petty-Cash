@@ -1,0 +1,25 @@
+<resources>
+    <string name="floats_title">Cash float</string>
+    <string name="floats_custodian">Float custodian</string>
+    <string name="floats_empty">No float yet</string>
+    <string name="float_detail_title">Float detail</string>
+    <string name="float_month_spending">This month\'s spending</string>
+    <string name="float_no_spends">No spending recorded this month</string>
+    <string name="float_top_up">Top up</string>
+    <string name="float_reconcile">Start reconciliation</string>
+    <string name="float_no_receipt">No receipt</string>
+    <string name="topup_title">Top up float</string>
+    <string name="topup_amount_label">How much do you want to add?</string>
+    <string name="topup_amount_hint">The money comes from your M-Pesa when you confirm.</string>
+    <string name="topup_next">Continue</string>
+    <string name="topup_waiting_title">Waiting for M-Pesa</string>
+    <string name="topup_waiting_message">Approve the payment on your phone to finish the top-up.</string>
+    <string name="topup_success_title">Float topped up</string>
+    <string name="topup_success_message">KES %1$s was added to %2$s.</string>
+    <string name="topup_done">Done</string>
+    <string name="topup_cancelled_title">Top-up cancelled</string>
+    <string name="topup_cancelled_message">Nothing was added to the float.</string>
+    <string name="topup_try_again">Try again</string>
+    <string name="generic_back">Back</string>
+    <string name="generic_next">Next</string>
+</resources>
