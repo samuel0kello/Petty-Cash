@@ -19,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -42,9 +45,17 @@ fun ApprovalRequestCard(
     onApprove: (() -> Unit)? = null,
     onReject: (() -> Unit)? = null,
 ) {
+    val approveLabel = stringResource(R.string.approval_approve)
+    val rejectLabel = stringResource(R.string.approval_reject)
     Surface(
         modifier = modifier
             .fillMaxWidth()
+            .semantics {
+                customActions = buildList {
+                    onApprove?.let { add(CustomAccessibilityAction(approveLabel) { it(); true }) }
+                    onReject?.let { add(CustomAccessibilityAction(rejectLabel) { it(); true }) }
+                }
+            }
             .border(1.dp, MaterialTheme.colorScheme.outlineVariant, MaiTheme.shapes.lg),
         shape = MaiTheme.shapes.lg,
         color = MaterialTheme.colorScheme.surface,
