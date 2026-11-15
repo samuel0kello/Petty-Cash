@@ -12,4 +12,7 @@
     <string name="home_role_admin">Admin</string>
     <string name="home_role_custodian">Custodian</string>
     <string name="home_role_member">Member</string>
+    <string name="home_coach_mark_title">Request cash in seconds</string>
+    <string name="home_coach_mark_message">Tap here whenever you need money from the float. Attach a receipt and your approver gets notified.</string>
+    <string name="home_coach_mark_action">Got it</string>
 </resources>

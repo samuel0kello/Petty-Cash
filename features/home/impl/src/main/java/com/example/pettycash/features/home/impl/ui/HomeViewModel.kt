@@ -19,6 +19,11 @@ internal class HomeViewModel(
                 updateState { it.copy(dashboard = dashboard, roleSwitcherOpen = false) }
             }
         }
+        viewModelScope.launch {
+            homeRepository.coachMarkPending.collectLatest { pending ->
+                updateState { it.copy(showCoachMark = pending) }
+            }
+        }
     }
 
     override fun onAction(action: HomeAction) {
@@ -50,6 +55,9 @@ internal class HomeViewModel(
                     viewModelScope.launch { homeRepository.dismissFirstVisit() }
                     sendEvent(HomeEvent.NavigateToCompanyOnboarding)
                 }
+            }
+            HomeAction.OnCoachMarkDismiss -> {
+                viewModelScope.launch { homeRepository.dismissCoachMark() }
             }
         }
     }

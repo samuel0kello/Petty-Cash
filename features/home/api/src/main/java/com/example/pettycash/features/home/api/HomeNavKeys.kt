@@ -5,7 +5,6 @@ import androidx.navigation3.runtime.NavKey
 data object HomeNavKey : NavKey
 data object HomeApprovalsNavKey : NavKey
 data object HomeFloatNavKey : NavKey
-data object HomePeopleNavKey : NavKey
 data object HomeMoreNavKey : NavKey
 data object HomeRequestsNavKey : NavKey
 data object HomeHistoryNavKey : NavKey

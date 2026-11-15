@@ -9,4 +9,5 @@ android {
 dependencies {
     implementation(project(":features:home:api"))
     implementation(project(":features:company:api"))
+    implementation(project(":features:invite:api"))
 }

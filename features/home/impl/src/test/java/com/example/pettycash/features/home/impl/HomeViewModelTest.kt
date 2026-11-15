@@ -142,6 +142,8 @@ class HomeViewModelTest {
         var dismissedFirstVisit = false
 
         override val role = roleFlow
+        override val coachMarkPending = MutableStateFlow(false)
+        var dismissedCoachMark = false
 
         override suspend fun dashboard(role: HomeRole): HomeDashboard = HomeDashboard(
             userName = when (role) {
@@ -179,6 +181,11 @@ class HomeViewModelTest {
 
         override suspend fun dismissFirstVisit() {
             dismissedFirstVisit = true
+        }
+
+        override suspend fun dismissCoachMark() {
+            dismissedCoachMark = true
+            coachMarkPending.value = false
         }
     }
 }

@@ -42,6 +42,7 @@ import com.example.pettycash.features.home.impl.data.HomeSetupStep
 import com.example.pettycash.features.home.impl.data.HomeTab
 import com.example.pettycash.mai.components.MaiBalanceCard
 import com.example.pettycash.mai.components.MaiBanner
+import com.example.pettycash.mai.components.MaiCoachMark
 import com.example.pettycash.mai.components.MaiBannerTone
 import com.example.pettycash.mai.components.MaiExtendedFab
 import com.example.pettycash.mai.components.MaiNavigationBar
@@ -104,6 +105,15 @@ internal fun HomeScreen(
                 roles = dashboard.switchableRoles.map { it.toRoleOption(dashboard) },
                 onSelect = { onAction(HomeAction.OnRoleSelect(it)) },
                 onDismiss = { onAction(HomeAction.OnDismissRoleSwitcher) },
+            )
+        }
+        if (state.showCoachMark && dashboard?.role == HomeRole.Member) {
+            MaiCoachMark(
+                title = stringResource(R.string.home_coach_mark_title),
+                message = stringResource(R.string.home_coach_mark_message),
+                actionLabel = stringResource(R.string.home_coach_mark_action),
+                onAction = { onAction(HomeAction.OnCoachMarkDismiss) },
+                bottomPadding = 144.dp,
             )
         }
     }

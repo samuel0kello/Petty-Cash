@@ -17,7 +17,6 @@ import com.example.pettycash.features.home.api.HomeHistoryNavKey
 import com.example.pettycash.features.home.api.HomeMoreNavKey
 import com.example.pettycash.features.home.api.HomeNavKey
 import com.example.pettycash.features.home.api.HomeNewRequestNavKey
-import com.example.pettycash.features.home.api.HomePeopleNavKey
 import com.example.pettycash.features.home.api.HomeProfileNavKey
 import com.example.pettycash.features.home.api.HomeReconciliationNavKey
 import com.example.pettycash.features.home.api.HomeRecordSpendNavKey
@@ -28,6 +27,7 @@ import com.example.pettycash.features.home.impl.data.HomeTab
 import com.example.pettycash.features.home.impl.ui.HomeEvent
 import com.example.pettycash.features.home.impl.ui.HomeRoute
 import com.example.pettycash.features.home.impl.ui.HomeViewModel
+import com.example.pettycash.features.invite.api.TeamNavKey
 import com.example.pettycash.presentation.LocalNavigator
 import org.koin.android.ext.koin.androidContext
 import org.koin.compose.viewmodel.dsl.viewModelOf
@@ -51,7 +51,7 @@ val HomeImplModule = module {
                         HomeTab.Home -> navigator.goBack()
                         HomeTab.Approvals -> navigator.goTo(HomeApprovalsNavKey)
                         HomeTab.Float -> navigator.goTo(HomeFloatNavKey)
-                        HomeTab.People -> navigator.goTo(HomePeopleNavKey)
+                        HomeTab.People -> navigator.goTo(TeamNavKey)
                         HomeTab.More -> navigator.goTo(HomeMoreNavKey)
                         HomeTab.Requests -> navigator.goTo(HomeRequestsNavKey)
                         HomeTab.History -> navigator.goTo(HomeHistoryNavKey)
@@ -61,7 +61,7 @@ val HomeImplModule = module {
                     HomeEvent.NavigateToRecordSpend -> navigator.goTo(HomeRecordSpendNavKey)
                     HomeEvent.NavigateToApprovals -> navigator.goTo(HomeApprovalsNavKey)
                     HomeEvent.NavigateToFloat -> navigator.goTo(HomeFloatNavKey)
-                    HomeEvent.NavigateToPeople -> navigator.goTo(HomePeopleNavKey)
+                    HomeEvent.NavigateToPeople -> navigator.goTo(TeamNavKey)
                     HomeEvent.NavigateToMore -> navigator.goTo(HomeMoreNavKey)
                     HomeEvent.NavigateToRequests -> navigator.goTo(HomeRequestsNavKey)
                     HomeEvent.NavigateToHistory -> navigator.goTo(HomeHistoryNavKey)
@@ -76,7 +76,6 @@ val HomeImplModule = module {
 
     navigation<HomeApprovalsNavKey> { HomeStubScreen("Approvals") }
     navigation<HomeFloatNavKey> { HomeStubScreen("Float") }
-    navigation<HomePeopleNavKey> { HomeStubScreen("People") }
     navigation<HomeMoreNavKey> { HomeStubScreen("More") }
     navigation<HomeRequestsNavKey> { HomeStubScreen("Requests") }
     navigation<HomeHistoryNavKey> { HomeStubScreen("History") }

@@ -6,6 +6,7 @@ import com.example.pettycash.features.home.impl.data.HomeTab
 data class HomeState(
     val dashboard: HomeDashboard? = null,
     val roleSwitcherOpen: Boolean = false,
+    val showCoachMark: Boolean = false,
 )
 
 sealed interface HomeAction {
@@ -21,6 +22,7 @@ sealed interface HomeAction {
     data object OnReceiptsCardClick : HomeAction
     data object OnRowClick : HomeAction
     data class OnSetupStepClick(val index: Int) : HomeAction
+    data object OnCoachMarkDismiss : HomeAction
 }
 
 sealed interface HomeEvent {
