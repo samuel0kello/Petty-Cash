@@ -501,7 +501,7 @@ internal fun MemberRequestsRoute(
 }
 
 @Composable
-private fun MemberRequestsScreen(
+internal fun MemberRequestsScreen(
     items: List<ActivityItem>,
     onOpenDetail: (ActivityKind, String) -> Unit,
 ) {
